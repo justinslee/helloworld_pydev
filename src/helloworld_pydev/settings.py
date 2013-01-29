@@ -3,6 +3,9 @@
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+import os
+DIRNAME = os.path.abspath(os.path.dirname(__file__))
+
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
@@ -80,6 +83,7 @@ STATICFILES_FINDERS = (
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '5huee@e(7r=o733r9o6my@kq*^o6&amp;-r^sqq7q9kiukwwj^b-cn'
 
+
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
@@ -102,11 +106,21 @@ ROOT_URLCONF = 'helloworld_pydev.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'helloworld_pydev.wsgi.application'
 
+def fromRelativePath(*relativeComponents):
+    return os.path.join(os.path.dirname(__file__), *relativeComponents).replace("\\","/")
+
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    fromRelativePath("templates"),
+    os.path.join(DIRNAME, 'templates/'),
+    '/helloworld_pydev/templates'
+    "C:/Users/Justin/workspace/helloworld_pydev/src/helloworld_pydev/templates/hello_polls/index.html",
+
 )
+
+
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -119,7 +133,8 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'hello_polls'
+    'hello_polls',
+
 )
 
 # A sample logging configuration. The only tangible logging

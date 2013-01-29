@@ -1,5 +1,4 @@
-from models import MyPoll
-from models import MyChoice
+from models import MyPoll, MyChoice
 
 from django.contrib import admin
 
